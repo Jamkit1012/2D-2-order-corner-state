@@ -73,7 +73,7 @@ subroutine ek_ribbon
         if (cpuid==0) write(stdout, *) "Ribbonek the i'th kpoint", i, Nk1
         k=kmax*real(i-1)/(Nk1-1)
     ! Construct Hamiltonian at k-point
-        call ham_ribbon(k, CHamk)
+        call ham_twoborder(k, CHamk)
         CHamk_t = CHamk
     
         ! Ensure the matrix is Hermitian
