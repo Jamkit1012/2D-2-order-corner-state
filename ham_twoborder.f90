@@ -2,23 +2,17 @@ subroutine ham_twoborder(k, Hamk_ribbon)
 
      use para
      implicit none
-
-! loop index  
+  
      integer :: i1,j1,i2,j2
-
-! wave vector in 2d
      real(Dp) :: k
-
-! Hamiltonian of slab system
+     
      complex(Dp),intent(out) :: ham_twoborder(Num_wann*nslab1*nslab2, &
         Num_wann*nslab1*nslab2)
 
-! the factor 2 is induced by spin
      complex(Dp), allocatable :: Hij(:, :, :, :)
 
-     allocate(Hij(-ijmax:ijmax,-ijmax:ijmax,Num_wann,Num_wann))
-     call ham_qlayer2qlayerribbon(k,Hij)    
-    ! Initialize Hamiltonian
+    allocate(Hij(-ijmax:ijmax,-ijmax:ijmax,Num_wann,Num_wann))
+    call ham_qlayer2qlayerribbon(k,Hij)    
     ham_twoborder = 0.0d0
     
     ! Construct the Hamiltonian
@@ -34,7 +28,6 @@ subroutine ham_twoborder(k, Hamk_ribbon)
         end do
     end do
     
-    ! Deallocate
     deallocate(Hij)
     
 contains
