@@ -1,0 +1,48 @@
+&TB_FILE
+Hrfile = "BBH_hr.dat"  
+/
+
+!> bulk band structure calculation flag
+&CONTROL
+WireBand_calc = T
+/
+
+&SYSTEM
+NSLAB1 = 10              ! for thin film system
+NSLAB2 = 10
+NumOccupied = 2        
+SOC = 0                 
+E_FERMI = 0       
+/
+
+&PARAMETERS
+Nk1 = 51            ! number k points
+Nk2 = 51
+OmegaMin =  0    ! energy interval
+OmegaMax =  1    ! energy interval
+!Single_KPOINT_2D_DIRECT = 10
+/
+
+LATTICE   
+Angstrom
+   1.0000000   000000000   000000000    
+   000000000   1.0000000   000000000    
+   000000000   000000000   1.0000000    
+
+ATOM_POSITIONS
+1                               ! number of atoms for projectors
+Direct                          ! Direct or Cartisen coordinate
+A  0.25     0.25     0 
+
+PROJECTORS
+ 4            ! number of projectors 
+ A  s px py pz
+
+SURFACE            ! See doc for details 数
+ 1  0  0
+ 0  1  0
+
+KPATH_BULK            ! k point path 
+2              ! number of k line only for bulk band
+X 0.50000 0.00000 0.0000 G 0.00000 0.00000 0.0000
+G 0.00000 0.00000 0.0000 Z -0.50000 0.00000 0.0000 
